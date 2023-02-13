@@ -4,12 +4,25 @@ import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Player = dynamic(() => import("@/components/Player"), { ssr: false });
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [url, setUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const cancelToken = setTimeout(() => {
+      setUrl("https://vimeo.com/524933864");
+    }, 1000);
+
+    return () => {
+      clearTimeout(cancelToken);
+    };
+  }, []);
+
   return (
     <>
       <Head>
@@ -25,7 +38,7 @@ export default function Home() {
             width: "600px",
           }}
         >
-          <Player url="https://vimeo.com/524933864" provider="vimeo" />
+          {url && <Player url={url} provider="vimeo" />}
           <Link href={"/two"}>Two</Link>
         </div>
       </main>
