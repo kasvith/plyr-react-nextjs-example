@@ -26,10 +26,10 @@ export default function Home() {
           }}
         >
           <Player
-            url="https://player.vimeo.com/video/798410935?h=35a20f40ed"
-            provider="vimeo"
+            url="https://www.youtube.com/watch?v=sbMGi0X5QpA"
+            provider="youtube"
           />
-          <Link href={"/two"}>Two</Link>
+          <Link href={"/"}>One</Link>
         </div>
       </main>
     </>
