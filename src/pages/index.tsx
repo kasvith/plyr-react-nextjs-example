@@ -25,10 +25,7 @@ export default function Home() {
             width: "600px",
           }}
         >
-          <Player
-            url="https://player.vimeo.com/video/798410935?h=35a20f40ed"
-            provider="vimeo"
-          />
+          <Player url="https://vimeo.com/524933864" provider="vimeo" />
           <Link href={"/two"}>Two</Link>
         </div>
       </main>
