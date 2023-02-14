@@ -6,17 +6,33 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const Player = dynamic(() => import("@/components/Player"), { ssr: false });
+const Player = dynamic(() => import("@/components/ReactivePlayer"), {
+  ssr: false,
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [url, setUrl] = useState<string | null>(null);
+  const [provider, setProvider] = useState<"vimeo" | "youtube">("vimeo");
 
   useEffect(() => {
     const cancelToken = setTimeout(() => {
       setUrl("https://vimeo.com/524933864");
+      setProvider("vimeo");
     }, 1000);
+
+    return () => {
+      clearTimeout(cancelToken);
+    };
+  }, []);
+
+  useEffect(() => {
+    const cancelToken = setTimeout(() => {
+      console.log("setting yt");
+      setUrl("https://www.youtube.com/watch?v=sbMGi0X5QpA");
+      setProvider("youtube");
+    }, 3000);
 
     return () => {
       clearTimeout(cancelToken);
@@ -38,7 +54,7 @@ export default function Home() {
             width: "600px",
           }}
         >
-          {url && <Player url={url} provider="vimeo" />}
+          {url && <Player url={url} provider={provider} />}
           <Link href={"/two"}>Two</Link>
         </div>
       </main>

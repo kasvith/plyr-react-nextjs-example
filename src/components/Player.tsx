@@ -24,10 +24,11 @@ export default function Player({
     if (!playerRef.current) {
       return;
     }
+
     if (plyr.current) return;
+
     plyr.current = new Plyr(playerRef.current!, {
       clickToPlay: true,
-      vimeo: {},
     });
 
     plyr.current.on("ended", (event) => {
@@ -44,14 +45,16 @@ export default function Player({
       plyr.current?.destroy();
       plyr.current = null;
     };
-  }, [onPlay, onEnded, onPause]);
+  }, [onPlay, onEnded, onPause, url, provider]);
 
   return (
-    <div
-      id="player"
-      ref={playerRef}
-      data-plyr-provider={provider}
-      data-plyr-embed-id={url}
-    ></div>
+    <div className="plyr-wrapper">
+      <div
+        id="player"
+        ref={playerRef}
+        data-plyr-provider={provider}
+        data-plyr-embed-id={url}
+      ></div>
+    </div>
   );
 }
