@@ -48,7 +48,7 @@ export default function Player({
   }, [onPlay, onEnded, onPause, url, provider]);
 
   return (
-    <div className="plyr-wrapper">
+    <div>
       <div
         id="player"
         ref={playerRef}
