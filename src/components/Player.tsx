@@ -2,7 +2,7 @@ import Plyr from "plyr";
 import "plyr/dist/plyr.css";
 import { useEffect, useRef } from "react";
 
-interface PlayerProps {
+export interface PlayerProps {
   provider: "vimeo" | "youtube";
   url: string;
   onEnded?: (event: Plyr.PlyrEvent) => void;
