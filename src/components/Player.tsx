@@ -41,6 +41,7 @@ export default function Player({
     });
 
     return () => {
+      plyr.current?.destroy();
       plyr.current = null;
     };
   }, [onPlay, onEnded, onPause]);
